@@ -1,0 +1,42 @@
+# stefans-first-app/deployment.yaml
+
+# Definiert das Deployment für unseren NGINX-Server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stefans-nginx-app
+  # Das Label, um die Pods zu identifizieren
+  labels:
+    app: nginx
+spec:
+  # Wir wollen initial eine Instanz (ein Pod) laufen haben
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        # Das zu verwendende Container-Image
+        image: nginx:1.21.6
+        ports:
+        - containerPort: 80
+
+---
+
+# Definiert den Service, um den NGINX-Server im Cluster erreichbar zu machen
+apiVersion: v1
+kind: Service
+metadata:
+  name: stefans-nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
