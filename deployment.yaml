@@ -31,7 +31,6 @@ spec:
       volumes:
         - name: nginx-cache
           emptyDir: {}
-      revisionHistoryLimit: 1
 ---
 
 # Definiert den Service, um den NGINX-Server im Cluster erreichbar zu machen
@@ -46,4 +45,3 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  revisionHistoryLimit: 1
