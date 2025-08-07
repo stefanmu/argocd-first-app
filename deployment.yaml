@@ -24,7 +24,7 @@ spec:
         # Das zu verwendende Container-Image
         image: nginx:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
           - mountPath: /var/cache/nginx
             name: nginx-cache
@@ -44,4 +44,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080
