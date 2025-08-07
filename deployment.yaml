@@ -22,10 +22,15 @@ spec:
       containers:
       - name: nginx
         # Das zu verwendende Container-Image
-        image: nginx:1.21.6
+        image: nginx:latest
         ports:
         - containerPort: 80
-
+        volumeMounts:
+          - mountPath: /var/cache/nginx
+            name: nginx-cache
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
 ---
 
 # Definiert den Service, um den NGINX-Server im Cluster erreichbar zu machen
